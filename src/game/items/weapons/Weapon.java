@@ -1,8 +1,8 @@
 package game.items.weapons;
 
 import game.character.GameCharacter;
-import game.character.IAttack;
 import game.data.Damage;
+import game.interfaces.IAttack;
 
 public class Weapon implements IAttack {
 	String name;
@@ -13,9 +13,17 @@ public class Weapon implements IAttack {
 		this.damage = damageWeaponDoes;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
+	public Damage getWeaponDamage() {
+		return damage;
+	}
+	
 	@Override
 	public void Attack(GameCharacter character) {
-		//TODO do da big deeps
+		character.Defend(damage);
 	}
 
 }

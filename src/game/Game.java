@@ -9,7 +9,7 @@ public class Game {
 
 	public static void main(String[] args) {
 		//How messy
-		GameCharacter bestHero = new GameCharacter("Stallman", new HP(200), new Weapon("Freedom", new Damage(100)), new Armor("OpenSource", new Damage(100)));
+		GameCharacter bestHero = new GameCharacter("Richard", new HP(200), new Weapon("Sword", new Damage(100)), new Armor("Stallman Armor", new Damage(100)), 100);
 	}
 
 }

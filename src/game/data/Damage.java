@@ -16,4 +16,10 @@ public class Damage {
 	public Damage addDamage(Damage damageToAdd) {
 		return new Damage(damage + damageToAdd.getDamage());
 	}
+	
+	public Damage subtractDamage(Damage damageToSubtract) {
+		return new Damage(damage - damageToSubtract.getDamage());
+	}
+	
+	
 }

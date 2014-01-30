@@ -1,7 +1,7 @@
 package game.items.armor;
 
-import game.character.IDefend;
 import game.data.Damage;
+import game.interfaces.IDefend;
 
 public class Armor implements IDefend {
 	String name;
@@ -13,10 +13,8 @@ public class Armor implements IDefend {
 	}
 
 	@Override
-	public void Defend() {
-		// TODO Add logic so that if someone is defending, they take reduced damage
-		// or just have it pass in the attacker and check here? I don't know
-
+	public void Defend(Damage damageToDo) {
+		Damage actualDamageToDo = damageToDo.subtractDamage(damageReduction);
 	}
 
 }

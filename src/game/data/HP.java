@@ -5,28 +5,32 @@ public class HP {
 	private int currentHP;
 	
 	public HP(int HP) {
-		if(HP < 1) {
-			throw new IllegalArgumentException(HP + " is not a valid starting HP. Must be greater than 0.");
-		}
-		maxHP = HP;
+		this(HP, HP);
 	}
 	
-	public int getHP() {
+	private HP(int HP, int maxHP) {
+		if(HP < 1)
+			throw new IllegalArgumentException(HP + " is not a valid starting HP. Must be greater than 0.");
+		this.currentHP = HP;
+		this.maxHP = maxHP;
+	}
+	
+	public int getCurrentHP() {
 		return currentHP;
 	}
 	
-	public void addHP(HP hpToAdd) {
-		if(currentHP + hpToAdd.getHP() > maxHP) {
+	public HP addHP(HP hpToAdd) {
+		if(currentHP + hpToAdd.getCurrentHP() > maxHP) {
 			//TODO Change the logic for this, but just setting it here so it's not empty.
 			throw new IllegalArgumentException(hpToAdd + " gives character more HP than their max HP allows.");
 		}
-		currentHP += hpToAdd.getHP();
+		return new HP(currentHP += hpToAdd.getCurrentHP(), maxHP);
 	}
 	
-	public void subtractHP(HP hpToSubtract) {
-		if(currentHP - hpToSubtract.getHP() < 0) {
+	public HP subtractHP(HP hpToSubtract) {
+		if(currentHP - hpToSubtract.getCurrentHP() < 0) {
 			throw new IllegalArgumentException("The class that uses this HP is probably dead.");
 		}
-		currentHP -= hpToSubtract.getHP();
+		return new HP(currentHP -= hpToSubtract.getCurrentHP(), maxHP);
 	}
 }
