@@ -33,4 +33,10 @@ public class HP {
 		}
 		return new HP(currentHP -= hpToSubtract.getCurrentHP(), maxHP);
 	}
+	
+	public void takeDamage(Damage damageToTake) {
+		if(currentHP - damageToTake.getDamage() < 0)
+			throw new IllegalArgumentException("This class that uses this HP is probably dead.");
+		currentHP -= damageToTake.getDamage();
+	}
 }

@@ -22,8 +22,9 @@ public class Weapon implements IAttack {
 	}
 	
 	@Override
-	public void Attack(GameCharacter character) {
-		character.Defend(damage);
+	public Damage Attack(GameCharacter character) {
+		Damage damageToDo = damage.subtractDamage(character.Defend());
+		return damageToDo;
 	}
 
 }

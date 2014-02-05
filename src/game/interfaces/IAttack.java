@@ -1,7 +1,8 @@
 package game.interfaces;
 
 import game.character.GameCharacter;
+import game.data.Damage;
 
 public interface IAttack {
-	public abstract void Attack(GameCharacter character);
+	public abstract Damage Attack(GameCharacter character);
 }

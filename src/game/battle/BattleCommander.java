@@ -11,6 +11,8 @@ public class BattleCommander {
 	
 	public static void Battle(GameCharacter[] charactersToFight) {
 		//Will sort who goes first by the game characters speed
+		//http://www.roguebasin.com/index.php?title=A_priority_queue_based_turn_scheduling_system
+		//For what the system may eventually turn into, but at least gets the idea out there.
 		for(int i = 0; i < charactersToFight.length; i++)
 			fighters.add(charactersToFight[i]);
 		
@@ -19,11 +21,10 @@ public class BattleCommander {
 			GameCharacter defender = fighters.remove();
 			
 			attacker.Attack(defender);
-			fighters.add(attacker);
-			
-			if(defender.getHP().getCurrentHP() < 1) {
+			if(defender.getHP().getCurrentHP() < 1)
 				break;
-			}
+			fighters.add(attacker);
+			fighters.add(defender);
 		}
 		
 	}

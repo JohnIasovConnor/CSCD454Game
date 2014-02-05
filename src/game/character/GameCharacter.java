@@ -14,6 +14,7 @@ public class GameCharacter {
 	
 	public GameCharacter(String name, HP startingHP, IAttack weaponToUse, IDefend defenseToUse, int speed)
 	{
+		//perhaps make a GameCharacter attributes class?
 		this.name = name;
 		this.HP = startingHP;
 		this.weapon = weaponToUse;
@@ -26,11 +27,12 @@ public class GameCharacter {
 	}
 	
 	public void Attack(GameCharacter characterToAttack) {
-		weapon.Attack(characterToAttack);
+		Damage damageToDo = weapon.Attack(characterToAttack);
+		characterToAttack.HP.takeDamage(damageToDo);
 	}
 	
-	public void Defend(Damage damageToDo) {
-		armor.Defend(damageToDo); //TODO add defense, perhaps set varying levels of damage reduction?
+	public Damage Defend() {
+		return armor.Defend(); //TODO add defense, perhaps set varying levels of damage reduction?
 	}
 	
 	public String getName() {

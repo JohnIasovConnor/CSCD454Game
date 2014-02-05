@@ -13,8 +13,8 @@ public class Armor implements IDefend {
 	}
 
 	@Override
-	public void Defend(Damage damageToDo) {
-		Damage actualDamageToDo = damageToDo.subtractDamage(damageReduction);
+	public Damage Defend() {
+		return damageReduction;
 	}
 
 }
