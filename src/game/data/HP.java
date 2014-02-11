@@ -1,42 +1,41 @@
 package game.data;
 
-public class HP {
-	private int maxHP;
-	private int currentHP;
+public class HP implements IUnitableCharacterData<HP> {
+	
+	private int HP;
 	
 	public HP(int HP) {
-		this(HP, HP);
+		if(HP < 0)
+			throw new IllegalArgumentException(HP + " is not a valid starting HP. Must be non-negative.");
+		this.HP = HP;
 	}
 	
-	private HP(int HP, int maxHP) {
-		if(HP < 1)
-			throw new IllegalArgumentException(HP + " is not a valid starting HP. Must be greater than 0.");
-		this.currentHP = HP;
-		this.maxHP = maxHP;
+	@Override
+	public HP add(HP hpToAdd) {
+		if(hpToAdd.getValue() < 0)
+			throw new IllegalArgumentException("Adding a negative HP value. Perhaps you should try subtracting instead.");
+		
+		return new HP(HP += hpToAdd.getValue());
 	}
 	
-	public int getCurrentHP() {
-		return currentHP;
+	@Override
+	public HP subtract(HP hpToSubtract) {
+		if(hpToSubtract.getValue() < 1)
+			throw new IllegalArgumentException("Subtracting a negative HP value. Perhaps you should try adding instead. Value passed: " + hpToSubtract);
+		
+		if(HP - hpToSubtract.getValue() < 0)
+			return new HP(0);
+			
+		return new HP(HP -= hpToSubtract.getValue());
 	}
 	
-	public HP addHP(HP hpToAdd) {
-		if(currentHP + hpToAdd.getCurrentHP() > maxHP) {
-			//TODO Change the logic for this, but just setting it here so it's not empty.
-			throw new IllegalArgumentException(hpToAdd + " gives character more HP than their max HP allows.");
-		}
-		return new HP(currentHP += hpToAdd.getCurrentHP(), maxHP);
+	@Override
+	public int getValue() {
+		return HP;
 	}
 	
-	public HP subtractHP(HP hpToSubtract) {
-		if(currentHP - hpToSubtract.getCurrentHP() < 0) {
-			throw new IllegalArgumentException("The class that uses this HP is probably dead.");
-		}
-		return new HP(currentHP -= hpToSubtract.getCurrentHP(), maxHP);
-	}
-	
-	public void takeDamage(Damage damageToTake) {
-		if(currentHP - damageToTake.getDamage() < 0)
-			throw new IllegalArgumentException("This class that uses this HP is probably dead.");
-		currentHP -= damageToTake.getDamage();
+	@Override
+	public String toString() {
+		return "" + HP;
 	}
 }

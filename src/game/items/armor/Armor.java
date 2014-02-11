@@ -16,5 +16,12 @@ public class Armor implements IDefend {
 	public Damage Defend() {
 		return damageReduction;
 	}
+	
+	@Override
+	public String toString() {
+		String result = "\nArmor Name: " + name;
+		result += "\nArmor Value: " + damageReduction;
+		return result;
+	}
 
 }

@@ -13,18 +13,15 @@ public class Weapon implements IAttack {
 		this.damage = damageWeaponDoes;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	
-	public Damage getWeaponDamage() {
-		return damage;
+	@Override
+	public Damage Attack(GameCharacter character) {
+		return damage.subtract(character.Defend());
 	}
 	
 	@Override
-	public Damage Attack(GameCharacter character) {
-		Damage damageToDo = damage.subtractDamage(character.Defend());
-		return damageToDo;
+	public String toString() {
+		String result = "\nWeapon Name: " + name;
+		result += "\nDamage Weapon Does: " + damage;
+		return result;
 	}
-
 }

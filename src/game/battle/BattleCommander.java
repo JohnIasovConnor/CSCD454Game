@@ -21,11 +21,12 @@ public class BattleCommander {
 			GameCharacter defender = fighters.remove();
 			
 			attacker.Attack(defender);
-			if(defender.getHP().getCurrentHP() < 1)
+			if(defender.getHP().getValue() < 1) {
+				System.out.println(defender.getName() + " has been defeated!");
 				break;
+			}
 			fighters.add(attacker);
 			fighters.add(defender);
 		}
-		
 	}
 }

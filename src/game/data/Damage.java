@@ -1,6 +1,6 @@
 package game.data;
 
-public class Damage {
+public class Damage implements IUnitableCharacterData<Damage> {
 	private int damage;
 	
 	public Damage(int damage) {
@@ -9,17 +9,29 @@ public class Damage {
 		}
 		this.damage = damage;
 	}
-	public int getDamage() {
+	
+	@Override
+	public Damage add(Damage damageToAdd) {
+		if(damageToAdd.getValue() < 1)
+			throw new IllegalArgumentException("Adding a damage value less than 1.");
+		return new Damage(damage + damageToAdd.getValue());
+	}
+	
+	@Override
+	public Damage subtract(Damage damageToSubtract) {
+		if(damageToSubtract.getValue() < 1)
+			throw new IllegalArgumentException("Trying to subtract a damage value less than 1.");
+		
+		return new Damage(damage - damageToSubtract.getValue());
+	}
+	
+	@Override
+	public int getValue() {
 		return damage;
 	}
 	
-	public Damage addDamage(Damage damageToAdd) {
-		return new Damage(damage + damageToAdd.getDamage());
+	@Override
+	public String toString() {
+		return "" + damage;
 	}
-	
-	public Damage subtractDamage(Damage damageToSubtract) {
-		return new Damage(damage - damageToSubtract.getDamage());
-	}
-	
-	
 }
